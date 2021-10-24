@@ -5,7 +5,7 @@ function ModalWindow(props) {
 
     return (
         <div>
-            <Modal title="Новий проєкт"
+            <Modal title={props.textTitle}
                 visible={props.isModalVisible}
                 onOk={props.handleOk}
                 confirmLoading={props.isLoading}

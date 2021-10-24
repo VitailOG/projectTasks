@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Column from "../../components/project/Column";
 import AddButton from "../../components/homeUI/addButton";
 import ModalWindow from '../../components/homeUI/Modal';
-import axios from "axios";
+import $axios from '../../http';
 
 
 function DetailProject({ match }) {
@@ -15,8 +15,7 @@ function DetailProject({ match }) {
     const [newProject, setNewProject] = useState('')
 
     const textButton = "Створити колонку";
-
-    console.log(match.params.id)
+    const textTitle = "Нова колонку";
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -24,7 +23,7 @@ function DetailProject({ match }) {
 
     const handleOk = () => {
         setIsLoading(true)
-        axios.post(`http://127.0.0.1:8000/task/${match.params.id}`, { title: newProject }).then(res => {
+        $axios.post(`http://127.0.0.1:8000/task/${match.params.id}`, { title: newProject }).then(res => {
             if (res.data.Created) {
                 let newColumns = { "id": res.data.id, "title": newProject, "project": match.params.id, "tasks": [] };
                 setColumns([...columns, newColumns])
@@ -41,19 +40,19 @@ function DetailProject({ match }) {
 
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/task/test/${match.params.id}`).then(res => {
+        $axios.get(`http://127.0.0.1:8000/task/test/${match.params.id}`).then(res => {
+            console.log('start')
             setColumns(res.data)
         })
     }, [match.params.id])
 
-    console.log(columns)
-
     return (
         <div className="App" style={{ display: 'flex', marginTop: '30px' }}>
             {columns.map(e => (
-                <Column data={e}
+                <Column data={e} key={e.id}
                     setColumns={setColumns}
                     columns={columns}
+
                 />
             ))}
             <ModalWindow isModalVisible={isModalVisible}
@@ -62,6 +61,7 @@ function DetailProject({ match }) {
                 setNewProject={setNewProject}
                 newProject={newProject}
                 isLoading={isLoading}
+                textTitle={textTitle}
             />
             <AddButton text={textButton} showModal={showModal} />
         </div>

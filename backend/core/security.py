@@ -46,6 +46,7 @@ class JWTBearer(HTTPBearer):
         credentials: HTTPAuthorizationCredentials = await super().__call__(request)
         if credentials:
             token = decode_access_token(credentials.credentials)
+            print(token)
             if token is None:
                 raise exp
             return credentials.credentials

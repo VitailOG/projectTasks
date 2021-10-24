@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///./task"
+SQLALCHEMY_DATABASE_URL = "sqlite:///./fastapi"
 
 EXPIRE_ACCESS_TOKEN = 2
 SECRET_KEY = "nHTDmqnpNldsSLm1iADgLyZgJO34YDS7"

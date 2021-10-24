@@ -9,7 +9,7 @@ class AuthService(BaseDB):
 
     async def login(self, login):
         _user = await self.database.fetch_one(user.select().where(user.c.username == login.username))
-        if _user is None or not verify_password(login.hashed_password, _user.hashed_password):
+        if _user is None or not verify_password(login.password, _user.password):
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
         _user
         token = create_access_token({"username": _user.username})
@@ -20,9 +20,9 @@ class AuthService(BaseDB):
             email=item.email,
             username=item.username,
             is_active=item.is_active,
-            hashed_password=hash_password(item.hashed_password)
+            password=hash_password(item.password)
         )
-        print(hash_password(item.hashed_password))
+        print(hash_password(item.password))
         await self.database.execute(_user)
         return True
 

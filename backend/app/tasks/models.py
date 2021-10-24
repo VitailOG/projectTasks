@@ -13,11 +13,11 @@ class Task(Base):
 
 class ColumnTask(Base):
     __tablename__ = "column"
-    id = Column(Integer, primary_key=True, index=True, unique=True)
+    id = Column(Integer, primary_key=True)
     title = Column(String)
     project = Column(Integer, ForeignKey('project.id'))
     project_id = relationship("Project")
-    tasks = relationship("Task", backref="column_id", cascade="all, delete-orphan")
+    tasks = relationship("Task", backref="column_id", passive_deletes=True)
 
 
 task = Task.__table__

@@ -12,7 +12,7 @@ class User(AbstractUser):
 
 
 class CreateUser(AbstractUser):
-    hashed_password: str
+    password: str
 
 
 class Token(BaseModel):
@@ -21,4 +21,4 @@ class Token(BaseModel):
 
 class LoginUser(BaseModel):
     username: str
-    hashed_password: str
+    password: str

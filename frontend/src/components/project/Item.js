@@ -1,20 +1,20 @@
-import React, {useState, Fragment} from 'react';
-import {EditOutlined, DeleteOutlined} from '@ant-design/icons';
-import {Input} from "antd";
+import React, { useState, Fragment } from 'react';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Input } from "antd";
 
 function Item(props) {
     const [isHover, setIsHover] = useState(false)
     const [edit, setEdit] = useState(false)
 
-    let onMouse = () =>{
+    let onMouse = () => {
         setIsHover(true)
     }
 
-    let leaveMouse = () =>{
+    let leaveMouse = () => {
         setIsHover(false)
     }
 
-    let editTask = (task) =>{
+    let editTask = (task) => {
         props.setIsEdit(true)
         setEdit(true)
         props.setIdOfTheChangedTask(props.text.id)
@@ -23,8 +23,8 @@ function Item(props) {
 
     return (
         <div onMouseEnter={onMouse}
-             onMouseLeave={leaveMouse}
-             style={{ background: '#ececec', padding: '5px 0px 0.5px 0px', margin: '10px 0px' }}>
+            onMouseLeave={leaveMouse}
+            style={{ background: '#ececec', padding: '5px 0px 0.5px 0px', margin: '10px 0px' }}>
             {
                 edit && props.isEdit && props.idOfTheChangedTask === props.text.id
                     ?
@@ -40,8 +40,8 @@ function Item(props) {
                 isHover
                     ?
                     <Fragment>
-                        <EditOutlined onClick={() => editTask(props.text.text)}/>
-                        <DeleteOutlined onClick={() => props.deleteTask(props.text.id)}/>
+                        <EditOutlined onClick={() => editTask(props.text.text)} />
+                        <DeleteOutlined onClick={() => props.deleteTask(props.text.id)} />
                     </Fragment>
                     :
                     ""
