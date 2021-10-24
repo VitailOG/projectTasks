@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends
 from core.db import database
 from .models import task, column_task
 from . import schemas
-from .depencies import get_column_service, get_task_service
+from .dependencies import get_column_service, get_task_service
 
 router = APIRouter(
     prefix='/task'

@@ -6,7 +6,7 @@ from ..auth.models import user
 from core.security import get_current_user
 from . import schemas
 from .models import project
-from .depencies import get_project_service
+from .dependencies import get_project_service
 
 
 router = APIRouter(

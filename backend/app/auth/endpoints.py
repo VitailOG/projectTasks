@@ -4,7 +4,7 @@ from .models import user
 from . import schemas
 
 from core.security import get_current_user
-from .depencies import get_auth_service
+from .dependencies import get_auth_service
 
 
 from core.db import database
